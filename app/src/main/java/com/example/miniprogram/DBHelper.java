@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String username, String password, String mobileNumber, String email){
+    public boolean insertData(String email, String password, String mobileNumber,String username){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_USERNAME, username);
@@ -100,7 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean checkUsernamePassword(String username, String password){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS, new String[]{COLUMN_PASSWORD},
-                COLUMN_USERNAME + "=?",
+                COLUMN_EMAIL + "=?",
                 new String[]{username}, null, null, null);
 
         boolean exists = false;
